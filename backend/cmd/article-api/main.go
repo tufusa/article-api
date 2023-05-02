@@ -8,6 +8,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/tufusa/article-api/backend/pkg/config"
 	handlerHttp "github.com/tufusa/article-api/backend/pkg/handler/http"
 )
 
@@ -15,9 +16,8 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	addr := ":8080"
+	addr := config.LoadConfig().HTTP.Addr
 	router := handlerHttp.InitRouter()
-
 	srv := &http.Server{
 		Addr:    addr,
 		Handler: router,
