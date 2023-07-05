@@ -1,4 +1,4 @@
-package infra
+package infrastructure
 
 import (
 	"fmt"
@@ -31,7 +31,7 @@ func NewDBConnector() *DBConnector {
 }
 
 func generateDSN(conf config.DBConfig) string {
-	return fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=true&loc=Local",
+	return fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=true&loc=Local",
 		conf.Username,
 		conf.Password,
 		conf.Addr,
